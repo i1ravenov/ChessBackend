@@ -1,0 +1,6 @@
+@MoveService_HostAddress = http://localhost:5007
+
+GET {{MoveService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
