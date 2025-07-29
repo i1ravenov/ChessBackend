@@ -1,5 +1,8 @@
 bin/
 obj/
-/packages/
-riderModule.iml
-/_ReSharper.Caches/
+*.user
+*.suo
+.vs/
+*.db
+*.sqlite
+*.log
