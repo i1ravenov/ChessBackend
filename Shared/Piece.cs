@@ -1,3 +1,5 @@
+using Shared.Enums;
+
 namespace Shared;
 
 public class Piece
