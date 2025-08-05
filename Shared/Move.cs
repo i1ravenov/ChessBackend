@@ -1,3 +1,5 @@
+using Shared.Entity;
+
 namespace Shared;
 
 public class Move
