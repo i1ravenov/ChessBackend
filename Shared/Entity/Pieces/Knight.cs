@@ -18,10 +18,24 @@ namespace Shared.Entity.Pieces
         public override bool IsMoveValid(Cell startCell, Cell endCell, Board board)
         {
 
-            if (!CheckBounds(endCell))
-                return false;
-           
+            if (!CheckBounds(endCell)) return false;
 
+            int moveX = Math.Abs(startCell.X - endCell.X);
+            int moveY = Math.Abs(startCell.Y - endCell.Y);
+
+           
+            if ((moveX == 2 && moveY == 1) || (moveX == 1 && moveY == 2))
+            {
+                
+                if (CanAttack(endCell) || !endCell.IsOccupied)
+                {
+                    return true;
+                }
+            }
+
+            return false; 
         }
+
     }
-}
+ }
+
