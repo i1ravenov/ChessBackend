@@ -1,4 +1,4 @@
-using Shared.Entity;
+using Shared.Entity.Pieces;
 
 namespace Shared;
 

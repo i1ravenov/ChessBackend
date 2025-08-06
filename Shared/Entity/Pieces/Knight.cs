@@ -5,20 +5,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.Entity
+namespace Shared.Entity.Pieces
 {
-    internal class Queen : Piece
+    internal class Knight : Piece
     {
-        public Queen(Color color, PieceType pieceType) : base(color, pieceType)
+        public Knight(Color color, PieceType pieceType) : base(color, PieceType.Knight)
         {
-        }
-
-
-        public override bool IsMoveValid(Cell startCell, Cell endCell, Board board)
-        {
-            throw new NotImplementedException();
         }
 
      
+
+        public override bool IsMoveValid(Cell startCell, Cell endCell, Board board)
+        {
+
+            if (!CheckBounds(endCell))
+                return false;
+           
+
+        }
     }
 }
