@@ -61,6 +61,9 @@ namespace Shared.Entity.Pieces
                 return true;
             }
 
+
+            //todo en Passant
+
             return false;
         }
     }
