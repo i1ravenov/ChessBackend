@@ -16,20 +16,20 @@ namespace Shared.Entity.Pieces
             
 
 
-            int moveX  = Math.Abs(startSquare.X - endSquare.X);
-            int moveY = Math.Abs(startSquare.Y - endSquare.Y);
+            int moveX  = Math.Abs(startSquare.File - endSquare.File);
+            int moveY = Math.Abs(startSquare.Rank - endSquare.Rank);
 
             if (this.Color == Color.White)
             {
                 //regular move
-                if (startSquare.X == endSquare.X && moveY == 1 && endSquare.OccupyingPiece == null)
+                if (startSquare.File == endSquare.File && moveY == 1 && endSquare.OccupyingPiece == null)
                 {
                     return true;
                 }
 
                 //if first move and pawn moves 2 steps
-                if (startSquare.X == endSquare.X && moveY == 2 && startSquare.Y == 1 
-                    && endSquare.OccupyingPiece == null && board._board[endSquare.X, endSquare.Y - 1].OccupyingPiece == null)
+                if (startSquare.File == endSquare.File && moveY == 2 && startSquare.Rank == 1 
+                    && endSquare.OccupyingPiece == null && board._board[endSquare.File, endSquare.Rank - 1].OccupyingPiece == null)
                 {
                     return true;
                 }
@@ -38,13 +38,13 @@ namespace Shared.Entity.Pieces
             //same logic for black one
             else if (this.Color == Color.Black)
             {
-                if (startSquare.X == endSquare.X && moveY == 1 && endSquare.OccupyingPiece == null)
+                if (startSquare.File == endSquare.File && moveY == 1 && endSquare.OccupyingPiece == null)
                 {
                     return true;
                 }
 
-                if (startSquare.X == endSquare.X && moveY == 2 && startSquare.Y == 6 
-                    && endSquare.OccupyingPiece == null && board._board[endSquare.X, endSquare.Y + 1].OccupyingPiece == null)
+                if (startSquare.File == endSquare.File && moveY == 2 && startSquare.Rank == 6 
+                    && endSquare.OccupyingPiece == null && board._board[endSquare.File, endSquare.Rank + 1].OccupyingPiece == null)
                 {
                     return true;
                 }              

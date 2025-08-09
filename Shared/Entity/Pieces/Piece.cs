@@ -16,7 +16,7 @@ public abstract class Piece : IMoveValid
 
     protected bool CheckBounds(Square endSquare)
     {
-        if (endSquare.X < 0 || endSquare.X >= 8 || endSquare.Y < 0 || endSquare.Y >= 8)
+        if (endSquare.File < 0 || endSquare.File >= 8 || endSquare.Rank < 0 || endSquare.Rank >= 8)
         {
             return false; 
         }
@@ -29,24 +29,24 @@ public abstract class Piece : IMoveValid
         int xDirection = 0;
         int yDirection = 0;
 
-        if (startSquare.X == endSquare.X)
+        if (startSquare.File == endSquare.File)
         {
-            yDirection = (endSquare.Y > startSquare.Y) ? 1 : -1;
+            yDirection = (endSquare.Rank > startSquare.Rank) ? 1 : -1;
         }
-        else if (startSquare.Y == endSquare.Y)
+        else if (startSquare.Rank == endSquare.Rank)
         {
-            xDirection = (endSquare.X > startSquare.X) ? 1 : -1;
+            xDirection = (endSquare.File > startSquare.File) ? 1 : -1;
         }
-        else if (Math.Abs(startSquare.X - endSquare.X) == Math.Abs(startSquare.Y - endSquare.Y))
+        else if (Math.Abs(startSquare.File - endSquare.File) == Math.Abs(startSquare.Rank - endSquare.Rank))
         {
-            xDirection = (endSquare.X > startSquare.X) ? 1 : -1;
-            yDirection = (endSquare.Y > startSquare.Y) ? 1 : -1;
+            xDirection = (endSquare.File > startSquare.File) ? 1 : -1;
+            yDirection = (endSquare.Rank > startSquare.Rank) ? 1 : -1;
         }
 
-        int x = startSquare.X + xDirection;
-        int y = startSquare.Y + yDirection;
+        int x = startSquare.File + xDirection;
+        int y = startSquare.Rank + yDirection;
 
-        while (x != endSquare.X || y != endSquare.Y)
+        while (x != endSquare.File || y != endSquare.Rank)
         {
             if (board._board[x, y].OccupyingPiece != null)
             {

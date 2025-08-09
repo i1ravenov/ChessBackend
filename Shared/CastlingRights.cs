@@ -2,8 +2,8 @@ namespace Shared;
 
 public class CastlingRights
 {
-    private bool WhiteKingQSide {get; set;}
-    private bool WhiteKingKSide {get; set;}
-    private bool BlackKingQSide {get; set;}
-    private bool BlackKingKSide {get; set;}
+    public bool WhiteKingQSide {get; set;}
+    public bool WhiteKingKSide {get; set;}
+    public bool BlackKingQSide {get; set;}
+    public bool BlackKingKSide {get; set;}
 }

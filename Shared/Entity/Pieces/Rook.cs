@@ -12,7 +12,7 @@ namespace Shared.Entity.Pieces
         {
             if (!CheckBounds(endSquare)) return false;
 
-            if (startSquare.X != endSquare.X && startSquare.Y != endSquare.Y)
+            if (startSquare.File != endSquare.File && startSquare.Rank != endSquare.Rank)
             {
                 return false;
             }
