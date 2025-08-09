@@ -8,8 +8,6 @@ namespace Shared.Entity.Pieces
         {
         }
 
-     
-
         public override bool IsMoveValid(Square startSquare, Square endSquare, Board board)
         {
 
@@ -22,7 +20,7 @@ namespace Shared.Entity.Pieces
             if ((moveX == 2 && moveY == 1) || (moveX == 1 && moveY == 2))
             {
                 
-                if (CanAttack(endSquare) || !endSquare.IsOccupied)
+                if (CanAttack(endSquare) || endSquare.OccupyingPiece == null)
                 {
                     return true;
                 }

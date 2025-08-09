@@ -6,14 +6,13 @@ namespace Shared.Entity
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public bool IsOccupied { get; set; }
         public Piece? OccupyingPiece { get; set; }
        
         public Square(int x, int y)
         {
             X = x;
             Y = y;
-            IsOccupied = false;
+            OccupyingPiece = null;
         }
     }
 }

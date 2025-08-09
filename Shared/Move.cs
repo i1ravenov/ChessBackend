@@ -1,10 +1,11 @@
 using Shared.Entity.Pieces;
 
-namespace Shared;
-
-public class Move
+namespace Shared
 {
-    private Piece piece;
-    private string fromCell;
-    private string toCell;
+    public class Move
+    {
+        private Piece Piece {get; set;}
+        private string fromCell;
+        private string toCell;
+    }    
 }

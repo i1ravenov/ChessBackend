@@ -20,7 +20,7 @@ namespace Shared.Entity.Pieces
                 {
                     if (CheckPath(startSquare, endSquare, board))
                     {
-                        if (CanAttack(endSquare) || !endSquare.IsOccupied)
+                        if (CanAttack(endSquare) || endSquare.OccupyingPiece == null)
                         {
                             return true;
                         }

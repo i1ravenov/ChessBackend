@@ -22,14 +22,14 @@ namespace Shared.Entity.Pieces
             if (this.Color == Color.White)
             {
                 //regular move
-                if (startSquare.X == endSquare.X && moveY == 1 && !endSquare.IsOccupied)
+                if (startSquare.X == endSquare.X && moveY == 1 && endSquare.OccupyingPiece == null)
                 {
                     return true;
                 }
 
                 //if first move and pawn moves 2 steps
                 if (startSquare.X == endSquare.X && moveY == 2 && startSquare.Y == 1 
-                    && !endSquare.IsOccupied && !board._board[endSquare.X, endSquare.Y - 1].IsOccupied)
+                    && endSquare.OccupyingPiece == null && board._board[endSquare.X, endSquare.Y - 1].OccupyingPiece == null)
                 {
                     return true;
                 }
@@ -38,20 +38,20 @@ namespace Shared.Entity.Pieces
             //same logic for black one
             else if (this.Color == Color.Black)
             {
-                if (startSquare.X == endSquare.X && moveY == 1 && !endSquare.IsOccupied)
+                if (startSquare.X == endSquare.X && moveY == 1 && endSquare.OccupyingPiece == null)
                 {
                     return true;
                 }
 
                 if (startSquare.X == endSquare.X && moveY == 2 && startSquare.Y == 6 
-                    && !endSquare.IsOccupied && !board._board[endSquare.X, endSquare.Y + 1].IsOccupied)
+                    && endSquare.OccupyingPiece == null && board._board[endSquare.X, endSquare.Y + 1].OccupyingPiece == null)
                 {
                     return true;
                 }              
             }
 
             //Is attacking 
-            if (moveX == 1 && moveY == 1 && endSquare.IsOccupied && endSquare.OccupyingPiece.Color != this.Color)
+            if (moveX == 1 && moveY == 1 && endSquare.OccupyingPiece != null && endSquare.OccupyingPiece.Color != this.Color)
             {
                 return true;
             }

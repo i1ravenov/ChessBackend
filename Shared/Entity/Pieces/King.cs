@@ -23,7 +23,7 @@ namespace Shared.Entity.Pieces
                     return false;
                 }
 
-                if (endSquare.IsOccupied && endSquare.OccupyingPiece.Color == this.Color)
+                if (endSquare.OccupyingPiece != null && endSquare.OccupyingPiece.Color == this.Color)
                 {
                     return false;
                 }

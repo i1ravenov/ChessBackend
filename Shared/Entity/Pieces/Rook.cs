@@ -21,7 +21,8 @@ namespace Shared.Entity.Pieces
                 return false;
             }
 
-            return CanAttack(endSquare) || !endSquare.IsOccupied;
+            // TODO: to be tested
+            return CanAttack(endSquare) || (endSquare.OccupyingPiece != null && endSquare.OccupyingPiece.Color != Color);
         }
     }
 }

@@ -47,7 +47,7 @@ public abstract class Piece : IMoveValid
 
         while (x != endSquare.X || y != endSquare.Y)
         {
-            if (board._board[x, y].IsOccupied)
+            if (board._board[x, y].OccupyingPiece != null)
             {
                 return false;
             }
