@@ -1,3 +1,5 @@
+using Shared.Entity.Pieces;
+
 namespace Shared;
 
 public class Move
