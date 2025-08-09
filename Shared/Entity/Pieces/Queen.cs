@@ -14,8 +14,8 @@ namespace Shared.Entity.Pieces
             if (!CheckBounds(endSquare))
                 return false;
 
-            return new Rook(this.color).IsMoveValid(startSquare, endSquare, board) ||
-                new Bishop(this.color).IsMoveValid(startSquare, endSquare, board);
+            return new Rook(this.Color).IsMoveValid(startSquare, endSquare, board) ||
+                new Bishop(this.Color).IsMoveValid(startSquare, endSquare, board);
         }
     }
 }

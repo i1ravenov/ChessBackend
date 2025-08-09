@@ -26,16 +26,16 @@ namespace Shared.Entity
         public List<Square> GetSquaresOfColor(Color color) =>
             _board
                 .Cast<Square>()
-                .Where(square => square.OccupyingPiece?.color == color)
+                .Where(square => square.OccupyingPiece?.Color == color)
                 .ToList();
         
         public bool IsUnderAttack(Square endSquare, Color playerColor)
         {
             foreach (var square in _board)
             {
-                if (square.OccupyingPiece != null && square.OccupyingPiece.color != playerColor)
+                if (square.OccupyingPiece != null && square.OccupyingPiece.Color != playerColor)
                 {
-                    if (square.OccupyingPiece.IsMoveValid(square, this))
+                    if (square.OccupyingPiece.IsMoveValid(square, endSquare, this))
                     {
                         return true;
                     }

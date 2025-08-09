@@ -19,7 +19,7 @@ namespace Shared.Entity.Pieces
             int moveX  = Math.Abs(startSquare.X - endSquare.X);
             int moveY = Math.Abs(startSquare.Y - endSquare.Y);
 
-            if (this.color == Color.White)
+            if (this.Color == Color.White)
             {
                 //regular move
                 if (startSquare.X == endSquare.X && moveY == 1 && !endSquare.IsOccupied)
@@ -36,7 +36,7 @@ namespace Shared.Entity.Pieces
             }
 
             //same logic for black one
-            else if (this.color == Color.Black)
+            else if (this.Color == Color.Black)
             {
                 if (startSquare.X == endSquare.X && moveY == 1 && !endSquare.IsOccupied)
                 {
@@ -51,7 +51,7 @@ namespace Shared.Entity.Pieces
             }
 
             //Is attacking 
-            if (moveX == 1 && moveY == 1 && endSquare.IsOccupied && endSquare.OccupyingPiece.color != this.color)
+            if (moveX == 1 && moveY == 1 && endSquare.IsOccupied && endSquare.OccupyingPiece.Color != this.Color)
             {
                 return true;
             }

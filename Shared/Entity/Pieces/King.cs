@@ -18,12 +18,12 @@ namespace Shared.Entity.Pieces
 
             if (moveX <= 1 && moveY <= 1)
             {
-                if (board.IsUnderAttack(endSquare , color))
+                if (board.IsUnderAttack(endSquare , Color))
                 {
                     return false;
                 }
 
-                if (endSquare.IsOccupied && endSquare.OccupyingPiece.color == this.color)
+                if (endSquare.IsOccupied && endSquare.OccupyingPiece.Color == this.Color)
                 {
                     return false;
                 }

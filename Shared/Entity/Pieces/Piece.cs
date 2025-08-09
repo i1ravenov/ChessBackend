@@ -4,13 +4,13 @@ namespace Shared.Entity.Pieces;
 
 public abstract class Piece : IMoveValid
 {
-   public Color color {  get; set; }
-   public PieceType pieceType {  get; set; }
+   public Color Color {  get; set; }
+   public PieceType PieceType {  get; set; }
 
-    public Piece(Color color, PieceType pieceType)
+    protected Piece(Color color, PieceType pieceType)
     {
-        this.color = color;
-        this.pieceType = pieceType;
+        this.Color = color;
+        this.PieceType = pieceType;
     }
 
     protected bool CheckBounds(Square endSquare)
@@ -23,7 +23,7 @@ public abstract class Piece : IMoveValid
     }
 
 
-    protected bool CheckPath(Square startSquare, Square endSquare, Board board)
+    protected static bool CheckPath(Square startSquare, Square endSquare, Board board)
     {
         int xDirection = 0;
         int yDirection = 0;
@@ -57,21 +57,11 @@ public abstract class Piece : IMoveValid
 
         return true;
     }
-
-
+    
     protected bool CanAttack(Square endSquare)
     {
-        if (endSquare.IsOccupied && endSquare.OccupyingPiece.color != this.color)
-        {
-            return true; 
-        }
-        return false; 
+        return endSquare.OccupyingPiece != null && endSquare.OccupyingPiece.Color != this.Color;
     }
 
     public abstract bool IsMoveValid(Square startSquare, Square endSquare, Board board);
-    public bool IsMoveValid(Square endSquare, Board board)
-    {
-       return IsMoveValid(null, endSquare, board);
-    }
-
 }
