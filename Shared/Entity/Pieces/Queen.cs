@@ -7,8 +7,7 @@ namespace Shared.Entity.Pieces
         public Queen(Color color) : base(color, PieceType.Queen)
         {
         }
-
-
+        
         public override bool IsMoveValid(Square startSquare, Square endSquare, Board board)
         {
             if (!CheckBounds(endSquare))

@@ -1,4 +1,5 @@
 using Shared.Enums;
+using Shared.Interfaces;
 
 namespace Shared.Entity.Pieces;
 
