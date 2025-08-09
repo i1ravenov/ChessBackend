@@ -1,9 +1,4 @@
 ﻿using Shared.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shared.Entity.Pieces
 {
@@ -13,28 +8,28 @@ namespace Shared.Entity.Pieces
         public Pawn(Color color) : base(color, PieceType.Pawn) { }
 
           
-        public override bool IsMoveValid(Cell startCell, Cell endCell, Board board)
+        public override bool IsMoveValid(Square startSquare, Square endSquare, Board board)
         {
 
-            if (!CheckBounds(endCell))        
+            if (!CheckBounds(endSquare))        
                 return false;
             
 
 
-            int moveX  = Math.Abs(startCell.X - endCell.X);
-            int moveY = Math.Abs(startCell.Y - endCell.Y);
+            int moveX  = Math.Abs(startSquare.X - endSquare.X);
+            int moveY = Math.Abs(startSquare.Y - endSquare.Y);
 
             if (this.color == Color.White)
             {
                 //regular move
-                if (startCell.X == endCell.X && moveY == 1 && !endCell.IsOccupied)
+                if (startSquare.X == endSquare.X && moveY == 1 && !endSquare.IsOccupied)
                 {
                     return true;
                 }
 
                 //if first move and pawn moves 2 steps
-                if (startCell.X == endCell.X && moveY == 2 && startCell.Y == 1 
-                    && !endCell.IsOccupied && !board.dashBoard[endCell.X, endCell.Y - 1].IsOccupied)
+                if (startSquare.X == endSquare.X && moveY == 2 && startSquare.Y == 1 
+                    && !endSquare.IsOccupied && !board._board[endSquare.X, endSquare.Y - 1].IsOccupied)
                 {
                     return true;
                 }
@@ -43,20 +38,20 @@ namespace Shared.Entity.Pieces
             //same logic for black one
             else if (this.color == Color.Black)
             {
-                if (startCell.X == endCell.X && moveY == 1 && !endCell.IsOccupied)
+                if (startSquare.X == endSquare.X && moveY == 1 && !endSquare.IsOccupied)
                 {
                     return true;
                 }
 
-                if (startCell.X == endCell.X && moveY == 2 && startCell.Y == 6 
-                    && !endCell.IsOccupied && !board.dashBoard[endCell.X, endCell.Y + 1].IsOccupied)
+                if (startSquare.X == endSquare.X && moveY == 2 && startSquare.Y == 6 
+                    && !endSquare.IsOccupied && !board._board[endSquare.X, endSquare.Y + 1].IsOccupied)
                 {
                     return true;
                 }              
             }
 
             //Is attacking 
-            if (moveX == 1 && moveY == 1 && endCell.IsOccupied && endCell.OccupyingPiece.color != this.color)
+            if (moveX == 1 && moveY == 1 && endSquare.IsOccupied && endSquare.OccupyingPiece.color != this.color)
             {
                 return true;
             }

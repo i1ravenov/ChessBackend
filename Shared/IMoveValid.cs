@@ -9,6 +9,6 @@ namespace Shared
 {
     internal interface IMoveValid
     {
-        bool IsMoveValid(Cell startCell, Cell endCell, Board board);
+        bool IsMoveValid(Square startSquare, Square endSquare, Board board);
     }
 }

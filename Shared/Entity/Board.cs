@@ -1,71 +1,41 @@
-﻿using Shared.Entity.Pieces;
-using Shared.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Shared.Enums;
 
 namespace Shared.Entity
 {
     public class Board
     {
-        public Cell[,] dashBoard;
+        public Square[,] _board;
 
         public Board()
         {
-            dashBoard = new Cell[8, 8];
-            CreateBoard();
-        }
-
-        private void CreateBoard()
-        {
+            _board = new Square[8, 8];
             for (int i = 0; i < 8; i++)
             {
-
                 for (int j = 0; j < 8; j++)
                 {
-
-                    dashBoard[i, j] = new Cell(i, j);
-
-
+                    _board[i, j] = new Square(i, j);
                 }
             }
-
         }
 
-        private Cell GetCell(int x, int y)
+        private Square GetCell(int x, int y)
         {
-
-            return dashBoard[x, y];
+            return _board[x, y];
         }
-
-
-        private List<Cell> GetOpponentCells(Piece piece)
+        
+        public List<Square> GetSquaresOfColor(Color color) =>
+            _board
+                .Cast<Square>()
+                .Where(square => square.OccupyingPiece?.color == color)
+                .ToList();
+        
+        public bool IsUnderAttack(Square endSquare, Color playerColor)
         {
-
-            List<Cell> opponentsCells = new List<Cell>();
-            //toDo
-            foreach (Cell cell in dashBoard)
+            foreach (var square in _board)
             {
-
-                if (cell.IsOccupied && cell.OccupyingPiece.color != piece.color)
+                if (square.OccupyingPiece != null && square.OccupyingPiece.color != playerColor)
                 {
-                    opponentsCells.Add(cell);
-                }
-            }
-            return opponentsCells;
-        }
-
-
-        public bool IsUnderAttack(Cell endCell, Color playerColor)
-        {
-            foreach (var cell in dashBoard)
-            {
-                if (cell.IsOccupied && cell.OccupyingPiece.color != playerColor)
-                {
-
-                    if (cell.OccupyingPiece.IsMoveValid(cell, this))
+                    if (square.OccupyingPiece.IsMoveValid(square, this))
                     {
                         return true;
                     }

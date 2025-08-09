@@ -13,9 +13,9 @@ public abstract class Piece : IMoveValid
         this.pieceType = pieceType;
     }
 
-    protected bool CheckBounds(Cell endCell)
+    protected bool CheckBounds(Square endSquare)
     {
-        if (endCell.X < 0 || endCell.X >= 8 || endCell.Y < 0 || endCell.Y >= 8)
+        if (endSquare.X < 0 || endSquare.X >= 8 || endSquare.Y < 0 || endSquare.Y >= 8)
         {
             return false; 
         }
@@ -23,31 +23,31 @@ public abstract class Piece : IMoveValid
     }
 
 
-    protected bool CheckPath(Cell startCell, Cell endCell, Board board)
+    protected bool CheckPath(Square startSquare, Square endSquare, Board board)
     {
         int xDirection = 0;
         int yDirection = 0;
 
-        if (startCell.X == endCell.X)
+        if (startSquare.X == endSquare.X)
         {
-            yDirection = (endCell.Y > startCell.Y) ? 1 : -1;
+            yDirection = (endSquare.Y > startSquare.Y) ? 1 : -1;
         }
-        else if (startCell.Y == endCell.Y)
+        else if (startSquare.Y == endSquare.Y)
         {
-            xDirection = (endCell.X > startCell.X) ? 1 : -1;
+            xDirection = (endSquare.X > startSquare.X) ? 1 : -1;
         }
-        else if (Math.Abs(startCell.X - endCell.X) == Math.Abs(startCell.Y - endCell.Y))
+        else if (Math.Abs(startSquare.X - endSquare.X) == Math.Abs(startSquare.Y - endSquare.Y))
         {
-            xDirection = (endCell.X > startCell.X) ? 1 : -1;
-            yDirection = (endCell.Y > startCell.Y) ? 1 : -1;
+            xDirection = (endSquare.X > startSquare.X) ? 1 : -1;
+            yDirection = (endSquare.Y > startSquare.Y) ? 1 : -1;
         }
 
-        int x = startCell.X + xDirection;
-        int y = startCell.Y + yDirection;
+        int x = startSquare.X + xDirection;
+        int y = startSquare.Y + yDirection;
 
-        while (x != endCell.X || y != endCell.Y)
+        while (x != endSquare.X || y != endSquare.Y)
         {
-            if (board.dashBoard[x, y].IsOccupied)
+            if (board._board[x, y].IsOccupied)
             {
                 return false;
             }
@@ -59,19 +59,19 @@ public abstract class Piece : IMoveValid
     }
 
 
-    protected bool CanAttack(Cell endCell)
+    protected bool CanAttack(Square endSquare)
     {
-        if (endCell.IsOccupied && endCell.OccupyingPiece.color != this.color)
+        if (endSquare.IsOccupied && endSquare.OccupyingPiece.color != this.color)
         {
             return true; 
         }
         return false; 
     }
 
-    public abstract bool IsMoveValid(Cell startCell, Cell endCell, Board board);
-    public bool IsMoveValid(Cell endCell, Board board)
+    public abstract bool IsMoveValid(Square startSquare, Square endSquare, Board board);
+    public bool IsMoveValid(Square endSquare, Board board)
     {
-       return IsMoveValid(null, endCell, board);
+       return IsMoveValid(null, endSquare, board);
     }
 
 }
