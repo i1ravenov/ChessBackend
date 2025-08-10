@@ -13,7 +13,7 @@ namespace ChessEngine
         {
             if (from.OccupyingPiece != null && !from.OccupyingPiece.Equals(piece))
             {
-                throw new ArgumentException("Square from contains other instance of Piece than provided");
+                throw new ArgumentException("Square 'from' contains other instance of Piece than provided in argument");
             }
             Piece = piece;
             From = from;
