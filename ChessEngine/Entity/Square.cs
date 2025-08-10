@@ -1,6 +1,6 @@
-﻿using Shared.Entity.Pieces;
+﻿using ChessEngine.Entity.Pieces;
 
-namespace Shared.Entity
+namespace ChessEngine.Entity
 {
     public class Square
     {

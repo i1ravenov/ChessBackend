@@ -1,7 +1,7 @@
-using Shared.Entity;
-using Shared.Entity.Pieces;
+using ChessEngine.Entity;
+using ChessEngine.Entity.Pieces;
 
-namespace Shared
+namespace ChessEngine
 {
     public class Move
     {

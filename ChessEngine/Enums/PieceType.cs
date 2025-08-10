@@ -1,4 +1,4 @@
-﻿namespace Shared.Enums;
+﻿namespace ChessEngine.Enums;
 
 public enum PieceType
 {

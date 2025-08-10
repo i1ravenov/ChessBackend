@@ -1,6 +1,6 @@
-﻿using Shared.Enums;
+﻿using ChessEngine.Enums;
 
-namespace Shared.Entity.Pieces
+namespace ChessEngine.Entity.Pieces
 {
     internal class Queen : Piece
     {

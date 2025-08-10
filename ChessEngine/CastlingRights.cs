@@ -1,4 +1,4 @@
-namespace Shared;
+namespace ChessEngine;
 
 public class CastlingRights
 {

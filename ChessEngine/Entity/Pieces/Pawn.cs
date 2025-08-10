@@ -1,11 +1,11 @@
-﻿using Shared.Enums;
+﻿using ChessEngine.Enums;
 
-namespace Shared.Entity.Pieces
+namespace ChessEngine.Entity.Pieces
 {
 
     internal class Pawn : Piece
     {
-        public Pawn(Color color) : base(color, PieceType.Pawn) { }
+        public Pawn(Color color) : base(color, Enums.PieceType.Pawn) { }
 
           
         public override bool IsMoveValid(Square startSquare, Square endSquare, Board board)
@@ -19,7 +19,7 @@ namespace Shared.Entity.Pieces
             int moveX  = Math.Abs(startSquare.File - endSquare.File);
             int moveY = Math.Abs(startSquare.Rank - endSquare.Rank);
 
-            if (this.Color == Color.White)
+            if (this.Color == Enums.Color.White)
             {
                 //regular move
                 if (startSquare.File == endSquare.File && moveY == 1 && endSquare.OccupyingPiece == null)
@@ -36,7 +36,7 @@ namespace Shared.Entity.Pieces
             }
 
             //same logic for black one
-            else if (this.Color == Color.Black)
+            else if (this.Color == Enums.Color.Black)
             {
                 if (startSquare.File == endSquare.File && moveY == 1 && endSquare.OccupyingPiece == null)
                 {

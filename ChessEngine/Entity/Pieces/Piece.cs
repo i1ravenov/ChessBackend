@@ -1,7 +1,7 @@
-using Shared.Enums;
-using Shared.Interfaces;
+using ChessEngine.Enums;
+using ChessEngine.Interfaces;
 
-namespace Shared.Entity.Pieces;
+namespace ChessEngine.Entity.Pieces;
 
 public abstract class Piece : IMoveValid
 {

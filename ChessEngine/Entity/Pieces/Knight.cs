@@ -1,10 +1,10 @@
-﻿using Shared.Enums;
+﻿using ChessEngine.Enums;
 
-namespace Shared.Entity.Pieces
+namespace ChessEngine.Entity.Pieces
 {
     internal class Knight : Piece
     {
-        public Knight(Color color) : base(color, PieceType.Knight)
+        public Knight(Color color) : base(color, Enums.PieceType.Knight)
         {
         }
 

@@ -1,6 +1,6 @@
-﻿using Shared.Entity;
+﻿using ChessEngine.Entity;
 
-namespace Shared.Interfaces
+namespace ChessEngine.Interfaces
 {
     internal interface IMoveValid
     {

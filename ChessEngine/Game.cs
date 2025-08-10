@@ -1,7 +1,7 @@
-using Shared.Entity;
-using Shared.Enums;
+using ChessEngine.Entity;
+using ChessEngine.Enums;
 
-namespace Shared;
+namespace ChessEngine;
 
 public class Game
 {

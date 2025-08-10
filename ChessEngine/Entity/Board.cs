@@ -1,7 +1,7 @@
-﻿using Shared.Entity.Pieces;
-using Shared.Enums;
+﻿using ChessEngine.Entity.Pieces;
+using ChessEngine.Enums;
 
-namespace Shared.Entity
+namespace ChessEngine.Entity
 {
     public class Board
     {
