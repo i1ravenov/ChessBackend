@@ -16,9 +16,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService", "Noti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageService", "StorageService\StorageService.csproj", "{686886E9-8474-41DC-883C-CFF05AB15B48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{D62EB9A7-FBEE-4A87-8392-CE2D98FCF87F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessEngine", "ChessEngine\ChessEngine.csproj", "{D62EB9A7-FBEE-4A87-8392-CE2D98FCF87F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedTests", "SharedTests\SharedTests.csproj", "{A1EC93C4-2CBB-4F97-9D6F-9AB62BB4AD0E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessEngine.Tests", "ChessEngine.Tests\ChessEngine.Tests.csproj", "{0A5AB5FC-B783-4F21-AD6B-DEDCFA63AC5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,9 +62,9 @@ Global
 		{D62EB9A7-FBEE-4A87-8392-CE2D98FCF87F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D62EB9A7-FBEE-4A87-8392-CE2D98FCF87F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D62EB9A7-FBEE-4A87-8392-CE2D98FCF87F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1EC93C4-2CBB-4F97-9D6F-9AB62BB4AD0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1EC93C4-2CBB-4F97-9D6F-9AB62BB4AD0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1EC93C4-2CBB-4F97-9D6F-9AB62BB4AD0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1EC93C4-2CBB-4F97-9D6F-9AB62BB4AD0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A5AB5FC-B783-4F21-AD6B-DEDCFA63AC5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A5AB5FC-B783-4F21-AD6B-DEDCFA63AC5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A5AB5FC-B783-4F21-AD6B-DEDCFA63AC5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A5AB5FC-B783-4F21-AD6B-DEDCFA63AC5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

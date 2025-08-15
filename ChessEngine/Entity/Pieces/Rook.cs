@@ -1,6 +1,6 @@
-﻿using Shared.Enums;
+﻿using ChessEngine.Enums;
 
-namespace Shared.Entity.Pieces
+namespace ChessEngine.Entity.Pieces
 {
     internal class Rook : Piece
     {
@@ -12,7 +12,7 @@ namespace Shared.Entity.Pieces
         {
             if (!CheckBounds(endSquare)) return false;
 
-            if (startSquare.X != endSquare.X && startSquare.Y != endSquare.Y)
+            if (startSquare.File != endSquare.File && startSquare.Rank != endSquare.Rank)
             {
                 return false;
             }
@@ -21,7 +21,8 @@ namespace Shared.Entity.Pieces
                 return false;
             }
 
-            return CanAttack(endSquare) || !endSquare.IsOccupied;
+            // TODO: to be tested
+            return CanAttack(endSquare) || (endSquare.OccupyingPiece != null && endSquare.OccupyingPiece.Color != Color);
         }
     }
 }
