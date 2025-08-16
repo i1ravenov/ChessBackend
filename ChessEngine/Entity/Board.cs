@@ -33,6 +33,7 @@ namespace ChessEngine.Entity
                         continue;
                     }
                     _board[i, j].OccupyingPiece = ParsePiece(line[j]);
+                    j++;
                 } 
             }
         }

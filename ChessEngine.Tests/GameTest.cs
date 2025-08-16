@@ -1,5 +1,4 @@
 ﻿namespace ChessEngine.Tests;
-using Xunit;
 
 public class GameTest
 {
