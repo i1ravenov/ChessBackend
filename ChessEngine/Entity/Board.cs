@@ -86,5 +86,56 @@ namespace ChessEngine.Entity
             }
             return false;
         }
+        
+        public string ToFen()
+        {
+            var fenRows = new List<string>();
+
+            for (int i = 0; i < 8; i++) // Ranks
+            {
+                int emptyCount = 0;
+                string row = "";
+                for (int j = 0; j < 8; j++) // Files
+                {
+                    var piece = _board[i, j].OccupyingPiece;
+
+                    if (piece == null)
+                    {
+                        emptyCount++;
+                    }
+                    else
+                    {
+                        if (emptyCount > 0)
+                        {
+                            row += emptyCount.ToString();
+                            emptyCount = 0;
+                        }
+
+                        char symbol = piece switch
+                        {
+                            Pawn => 'p',
+                            Rook => 'r',
+                            Knight => 'n',
+                            Bishop => 'b',
+                            Queen => 'q',
+                            King => 'k',
+                            _ => throw new Exception("Unknown piece type")
+                        };
+
+                        if (piece.Color == Color.White)
+                            symbol = Char.ToUpper(symbol);
+
+                        row += symbol;
+                    }
+                }
+
+                if (emptyCount > 0)
+                    row += emptyCount.ToString();
+
+                fenRows.Add(row);
+            }
+
+            return string.Join("/", fenRows);
+        }
     }
 }
