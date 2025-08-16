@@ -24,5 +24,10 @@ namespace ChessEngine.Entity
             File = pos[0] - 'a';
             Rank = pos[1] - 1;
         }
+
+        public override string ToString()
+        {
+            return $"{Char.ConvertFromUtf32('a' + File)}{Rank + 1}";
+        }
     }
 }
