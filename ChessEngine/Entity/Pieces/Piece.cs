@@ -14,7 +14,7 @@ public abstract class Piece : IMoveValid
         this.PieceType = pieceType;
     }
 
-    protected bool CheckBounds(Square endSquare)
+    public bool CheckBounds(Square endSquare)
     {
         if (endSquare.File < 0 || endSquare.File >= 8 || endSquare.Rank < 0 || endSquare.Rank >= 8)
         {
@@ -24,7 +24,7 @@ public abstract class Piece : IMoveValid
     }
 
 
-    protected static bool CheckPath(Square startSquare, Square endSquare, Board board)
+    public static bool CheckPath(Square startSquare, Square endSquare, Board board)
     {
         int xDirection = 0;
         int yDirection = 0;

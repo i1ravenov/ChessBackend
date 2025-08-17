@@ -2,7 +2,7 @@
 
 namespace ChessEngine.Entity.Pieces
 {
-    internal class Rook : Piece
+    public class Rook : Piece
     {
         public Rook(Color color) : base(color, PieceType.Rook)
         {
@@ -13,16 +13,17 @@ namespace ChessEngine.Entity.Pieces
             if (!CheckBounds(endSquare)) return false;
 
             if (startSquare.File != endSquare.File && startSquare.Rank != endSquare.Rank)
-            {
                 return false;
-            }
-            if (!CheckPath(startSquare, endSquare, board))
-            {
-                return false;
-            }
 
-            // TODO: to be tested
-            return CanAttack(endSquare) || (endSquare.OccupyingPiece != null && endSquare.OccupyingPiece.Color != Color);
+            if (!CheckPath(startSquare, endSquare, board))
+                return false;
+
+            if (endSquare.OccupyingPiece == null || CanAttack(endSquare))
+                return true;
+
+            return false;
         }
+
     }
+
 }

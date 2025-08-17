@@ -2,7 +2,7 @@
 
 namespace ChessEngine.Entity.Pieces
 {
-    internal class Bishop : Piece
+    public class Bishop : Piece
     {
         public Bishop(Color color) : base(color, Enums.PieceType.Bishop)
         {

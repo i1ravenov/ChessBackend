@@ -7,3 +7,4 @@ namespace ChessEngine.Interfaces
         bool IsMoveValid(Square startSquare, Square endSquare, Board board);
     }
 }
+

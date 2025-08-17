@@ -33,7 +33,7 @@ namespace ChessEngine.Entity
                         continue;
                     }
                     _board[i, j].OccupyingPiece = ParsePiece(line[j]);
-                } 
+                }
             }
         }
 
@@ -72,19 +72,66 @@ namespace ChessEngine.Entity
                 .Where(square => square.OccupyingPiece?.Color == color)
                 .ToList();
 
-        public bool IsUnderAttack(Square endSquare, Color playerColor)
+
+        public bool IsUnderAttack(Square targetSquare, Color color)
         {
-            foreach (var square in _board)
+
+            for (int file = 0; file < 8; file++)
             {
-                if (square.OccupyingPiece != null && square.OccupyingPiece.Color != playerColor)
+                for (int rank = 0; rank < 8; rank++)
                 {
-                    if (square.OccupyingPiece.IsMoveValid(square, endSquare, this))
+                    var piece = _board[file, rank].OccupyingPiece;
+
+                    if (piece != null && piece.Color != color)
                     {
-                        return true;
+                        Console.WriteLine($"Checking threat on square {targetSquare.File},{targetSquare.Rank}");
+                        Console.WriteLine($"Piece {piece.PieceType} at {file},{rank}");
+
+                        int dx = targetSquare.File - file;
+                        int dy = targetSquare.Rank - rank;
+
+                        switch (piece)
+                        {
+                            case King:
+                                if (Math.Abs(dx) <= 1 && Math.Abs(dy) <= 1)
+                                    return true;
+                                break;
+
+                            case Queen:
+                                if ((dx == 0 || dy == 0 || Math.Abs(dx) == Math.Abs(dy)) &&
+                                    Piece.CheckPath(_board[file, rank], targetSquare, this))
+                                    return true;
+                                break;
+
+                            case Rook:
+                                if ((dx == 0 || dy == 0) &&
+                                    Piece.CheckPath(_board[file, rank], targetSquare, this))
+                                    return true;
+                                break;
+
+                            case Bishop:
+                                if (Math.Abs(dx) == Math.Abs(dy) &&
+                                    Piece.CheckPath(_board[file, rank], targetSquare, this))
+                                    return true;
+                                break;
+
+                            case Knight:
+                                if ((Math.Abs(dx) == 2 && Math.Abs(dy) == 1) || (Math.Abs(dx) == 1 && Math.Abs(dy) == 2))
+                                    return true;
+                                break;
+
+                            case Pawn:
+                                int dir = (piece.Color == Color.White) ? -1 : 1;
+                                if (dy == dir && Math.Abs(dx) == 1)
+                                    return true;
+                                break;
+                        }
                     }
                 }
             }
             return false;
         }
+
+
     }
 }
