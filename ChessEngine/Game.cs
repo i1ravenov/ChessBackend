@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using ChessEngine.Entity;
 using ChessEngine.Enums;
 
@@ -5,6 +6,7 @@ namespace ChessEngine;
 
 public class Game
 {
+    [Required]
     private Board Board {get; set;}
     private IList<Move> Moves {get; set;}
     public Color NextTurn {get; private set;}
@@ -23,6 +25,13 @@ public class Game
         ParseFen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
     }
 
+    public Game(string fen)
+    {
+        IsOver = false;
+        Moves = new List<Move>();
+        ParseFen(fen);
+    }
+    
     private void ParseFen(string fen)
     {
         FenData = fen.Split(" ").ToList();
