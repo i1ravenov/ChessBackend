@@ -120,5 +120,11 @@ namespace ChessEngine.Entity
             }
             throw new ArgumentException($"Unknown piece");
         }
+        
+        public void ApplyMove(Square from, Square to)
+        {
+            _board[to.File, to.Rank].OccupyingPiece = from.OccupyingPiece;
+            _board[from.File, from.Rank].OccupyingPiece = null;
+        }
     }
 }

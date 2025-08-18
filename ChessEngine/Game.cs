@@ -1,4 +1,5 @@
 using ChessEngine.Entity;
+using ChessEngine.Entity.Pieces;
 using ChessEngine.Enums;
 
 namespace ChessEngine;
@@ -42,5 +43,18 @@ public class Game
         castlingRights.BlackKingKSide = castling.Contains("k");
         castlingRights.BlackKingQSide = castling.Contains("q");
         CastlingRights = castlingRights;
+    }
+
+    public void MakeMove(Square from, Square to)
+    {
+        if (from.OccupyingPiece == null || (to.OccupyingPiece != null && to.OccupyingPiece.Color == from.OccupyingPiece.Color))
+        {
+            return;
+        }
+        Piece piece = from.OccupyingPiece;
+        if (piece.IsMoveValid(from, to, Board))
+        {
+            Board.ApplyMove(from, to);
+        }
     }
 }

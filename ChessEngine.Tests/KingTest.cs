@@ -34,9 +34,13 @@ namespace ChessEngine.Tests
             foreach (var sq in validMoves)
                 Assert.True(whiteKing.IsMoveValid(board._board[4, 4], sq, board));
             
-            Assert.False(whiteKing.IsMoveValid(board._board[4, 4], underAttackSquares[0], board));
+            // Move king to square under attack
+            board.ApplyMove(board._board[4, 4], underAttackSquares[1]);
             Assert.False(whiteKing.IsMoveValid(board._board[4, 4], underAttackSquares[1], board));
-
+            // Move king to another square under attack (even though it is impossible to jump over square for king)
+            board.ApplyMove(underAttackSquares[1], underAttackSquares[0]);
+            Assert.False(whiteKing.IsMoveValid(underAttackSquares[0], board._board[4, 4], board));
+            
             var outOfBoardSquares = new[]
             {
                 new Square(-1, 4),
