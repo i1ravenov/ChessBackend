@@ -24,6 +24,7 @@ public abstract class Piece : IMoveValid
     }
 
 
+    // TODO: maybe create dedicated functions for each Piece instead one static func
     public static bool CheckPath(Square startSquare, Square endSquare, Board board)
     {
         int xDirection = 0;

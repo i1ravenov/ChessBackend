@@ -4,21 +4,21 @@ namespace ChessEngine.Entity.Pieces
 {
     public class King : Piece
     {
-        public King(Color color) : base(color, Enums.PieceType.King)
+        public King(Color color) : base(color, PieceType.King)
         {
         }
-        
+
         public override bool IsMoveValid(Square startSquare, Square endSquare, Board board)
         {
-            if(!CheckBounds(endSquare))
+            if (!CheckBounds(endSquare))
                 return false;
 
             int moveX = Math.Abs(startSquare.File - endSquare.File);
-            int moveY = Math.Abs(startSquare.Rank- endSquare.Rank);
+            int moveY = Math.Abs(startSquare.Rank - endSquare.Rank);
 
             if (moveX <= 1 && moveY <= 1)
             {
-                if (board.IsUnderAttack(endSquare , Color))
+                if (board.IsUnderAttack(endSquare, Color))
                 {
                     return false;
                 }
@@ -36,7 +36,7 @@ namespace ChessEngine.Entity.Pieces
 
                 return true;
             }
-            
+
             return false;
         }
     }

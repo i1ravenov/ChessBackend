@@ -84,6 +84,7 @@ namespace ChessEngine.Entity
 
                     if (piece != null && piece.Color != color)
                     {
+                        // TODO: add logger to the project
                         Console.WriteLine($"Checking threat on square {targetSquare.File},{targetSquare.Rank}");
                         Console.WriteLine($"Piece {piece.PieceType} at {file},{rank}");
 
@@ -93,45 +94,31 @@ namespace ChessEngine.Entity
                         switch (piece)
                         {
                             case King:
-                                if (Math.Abs(dx) <= 1 && Math.Abs(dy) <= 1)
-                                    return true;
-                                break;
+                                return Math.Abs(dx) <= 1 && Math.Abs(dy) <= 1;
 
                             case Queen:
-                                if ((dx == 0 || dy == 0 || Math.Abs(dx) == Math.Abs(dy)) &&
-                                    Piece.CheckPath(_board[file, rank], targetSquare, this))
-                                    return true;
-                                break;
+                                return (dx == 0 || dy == 0 || Math.Abs(dx) == Math.Abs(dy)) &&
+                                    Piece.CheckPath(_board[file, rank], targetSquare, this);
 
                             case Rook:
-                                if ((dx == 0 || dy == 0) &&
-                                    Piece.CheckPath(_board[file, rank], targetSquare, this))
-                                    return true;
-                                break;
+                                return (dx == 0 || dy == 0) &&
+                                    Piece.CheckPath(_board[file, rank], targetSquare, this);
 
                             case Bishop:
-                                if (Math.Abs(dx) == Math.Abs(dy) &&
-                                    Piece.CheckPath(_board[file, rank], targetSquare, this))
-                                    return true;
-                                break;
+                                return Math.Abs(dx) == Math.Abs(dy) &&
+                                    Piece.CheckPath(_board[file, rank], targetSquare, this);
 
                             case Knight:
-                                if ((Math.Abs(dx) == 2 && Math.Abs(dy) == 1) || (Math.Abs(dx) == 1 && Math.Abs(dy) == 2))
-                                    return true;
-                                break;
+                                return (Math.Abs(dx) == 2 && Math.Abs(dy) == 1) || (Math.Abs(dx) == 1 && Math.Abs(dy) == 2);
 
                             case Pawn:
-                                int dir = (piece.Color == Color.White) ? -1 : 1;
-                                if (dy == dir && Math.Abs(dx) == 1)
-                                    return true;
-                                break;
+                                var dir = (piece.Color == Color.White) ? -1 : 1;
+                                return dy == dir && Math.Abs(dx) == 1;
                         }
                     }
                 }
             }
-            return false;
+            throw new ArgumentException($"Unknown piece");
         }
-
-
     }
 }
