@@ -6,17 +6,17 @@ namespace ChessEngine;
 
 public class Game
 {
-    private Board Board {get; set;}
-    private IList<Move> Moves {get; set;}
-    public Color NextTurn {get; private set;}
-    private IList<string> FENdata {get; set;}
-    public bool IsOver {get; private set;}
-    private int NextMoveNumber {get; set;}
-    CastlingRights CastlingRights {get; set;}
-    private Square? EnPassant {get; set;}
-    private int HalfMoveNumberAfterPawnMoveOrCapture {get; set;}
-    private int FullMoveNumber {get; set;} // Note: it is incrementing after each Black move
-    
+    private Board Board { get; set; }
+    private IList<Move> Moves { get; set; }
+    public Color NextTurn { get; private set; }
+    private IList<string> FENdata { get; set; }
+    public bool IsOver { get; private set; }
+    private int NextMoveNumber { get; set; }
+    CastlingRights CastlingRights { get; set; }
+    private Square? EnPassant { get; set; }
+    private int HalfMoveNumberAfterPawnMoveOrCapture { get; set; }
+    private int FullMoveNumber { get; set; } // Note: it is incrementing after each Black move
+
     public Game()
     {
         IsOver = false;
@@ -28,7 +28,7 @@ public class Game
     {
         FENdata = fen.Split(" ").ToList();
         Board = new Board(FENdata[0]);
-        NextTurn = FENdata[1] == "w"  ? Color.White : Color.Black;
+        NextTurn = FENdata[1] == "w" ? Color.White : Color.Black;
         ParseCastling(FENdata[2]);
         EnPassant = FENdata[3] == "-" ? null : new Square(FENdata[3]);
         HalfMoveNumberAfterPawnMoveOrCapture = int.Parse(FENdata[4]);
@@ -45,16 +45,15 @@ public class Game
         CastlingRights = castlingRights;
     }
 
-    public void MakeMove(Square from, Square to)
+    public MoveResult MakeMove(Square from, Square to)
     {
-        if (from.OccupyingPiece == null || (to.OccupyingPiece != null && to.OccupyingPiece.Color == from.OccupyingPiece.Color))
+        if (from.OccupyingPiece == null
+            || (to.OccupyingPiece != null && to.OccupyingPiece.Color == from.OccupyingPiece.Color)
+            || !from.OccupyingPiece.IsMoveValid(from, to, Board))
         {
-            return;
+            return MoveResult.Fail("Invalid move of missing piece");
         }
-        Piece piece = from.OccupyingPiece;
-        if (piece.IsMoveValid(from, to, Board))
-        {
-            Board.ApplyMove(from, to);
-        }
+        Board.ApplyMove(from, to);
+        return MoveResult.Ok();
     }
 }
