@@ -1,7 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using ChessBackend;
-using ChessEngine;         // For MoveResult
-using ChessEngine.Entity; // For Game if you want to return it
 
 namespace ChessBackend.Controllers;
 
@@ -18,7 +15,6 @@ public class GamesController : ControllerBase
     public IActionResult Create()
     {
         var id = _games.CreateGame();
-        // Return 201 with a Location header to fetch state
         return CreatedAtAction(nameof(Get), new { id }, new { GameId = id });
     }
 
@@ -33,7 +29,7 @@ public class GamesController : ControllerBase
         {
             GameId = id,
             Fen = game.ToFen(),
-            Turn = game.NextTurn,     // adjust to your actual API
+            Turn = game.NextTurn,
             Status = "active"
         });
     }
@@ -42,7 +38,7 @@ public class GamesController : ControllerBase
     [HttpPost("{id:guid}/move")]
     public IActionResult Move(Guid id, [FromBody] MakeMoveDto dto)
     {
-        if (dto is null || string.IsNullOrWhiteSpace(dto.From) || string.IsNullOrWhiteSpace(dto.To))
+        if (string.IsNullOrWhiteSpace(dto.From) || string.IsNullOrWhiteSpace(dto.To))
             return BadRequest(new { message = "from/to are required" });
 
         var result = _games.MakeMove(id, dto.From, dto.To);
