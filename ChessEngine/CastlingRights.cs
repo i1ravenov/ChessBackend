@@ -6,4 +6,12 @@ public class CastlingRights
     public bool WhiteKingKSide {get; set;}
     public bool BlackKingQSide {get; set;}
     public bool BlackKingKSide {get; set;}
+
+    public override string ToString()
+    {
+        return (WhiteKingKSide ? "K" : "") + 
+               (WhiteKingQSide ? "Q" : "") + 
+               (BlackKingKSide ? "k" : "") + 
+               (BlackKingQSide ? "q" : "");
+    }
 }
