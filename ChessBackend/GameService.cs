@@ -1,6 +1,8 @@
 using ChessEngine;
 using ChessEngine.Entity;
 
+namespace ChessBackend;
+
 public class GameService
 {
     private readonly Dictionary<Guid, Game> _games = new();

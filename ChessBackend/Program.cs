@@ -1,32 +1,25 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
+using ChessBackend;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Register your services (ChessEngine lives as a library)
-builder.Services.AddSingleton<GameService>();
+builder.Services.AddControllers();
 
+builder.Services.AddSingleton<GameService>();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
-// Minimal API endpoints
-app.MapPost("/games", (GameService svc) =>
+if (app.Environment.IsDevelopment())
 {
-    var id = svc.CreateGame();
-    return Results.Created($"/games/{id}", new { id });
-});
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-app.MapGet("/games/{id}", (GameService svc, Guid id) =>
-{
-    var game = svc.GetGame(id);
-    return game is null ? Results.NotFound() : Results.Ok(game);
-});
+app.UseHttpsRedirection();
 
-app.MapPost("/games/{id}/moves", (GameService svc, Guid id, MoveDto move) =>
-{
-    var result = svc.MakeMove(id, move.From, move.To);
-    return result.Success ? Results.Ok(result) : Results.BadRequest(result.Error);
-});
+app.UseRouting();
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
-
-public record MoveDto(string From, string To);
