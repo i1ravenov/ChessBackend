@@ -29,12 +29,11 @@ public class GamesController : ControllerBase
         var game = _games.GetGame(id);
         if (game is null) return NotFound(new { message = "Game not found" });
 
-        // Shape the response as you like (FEN, whose turn, etc.)
         return Ok(new
         {
             GameId = id,
-            Fen = game.(),         // assuming your Game exposes this
-            Turn = game.CurrentTurn,     // adjust to your actual API
+            Fen = game.ToFen(),
+            Turn = game.NextTurn,     // adjust to your actual API
             Status = "active"
         });
     }
@@ -49,15 +48,12 @@ public class GamesController : ControllerBase
         var result = _games.MakeMove(id, dto.From, dto.To);
 
         if (!result.Success)
-            return BadRequest(new { message = result.Message }); // or 409 if illegal move
+            return BadRequest(new { message = "Illegal move" }); // or 409 if illegal move
 
-        // Optionally return the updated FEN or move info
         return Ok(new
         {
             Success = true,
-            San = result.SAN,          // if your MoveResult has SAN
-            Fen = result.FEN,          // or compute from Game again
-            Checkmate = result.IsMate, // adapt to your MoveResult
+            Fen = _games.GetGame(id)?.ToFen(),
         });
     }
 }

@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Stockfish.NET" Version="1.0.7" />
   </ItemGroup>
 

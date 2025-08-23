@@ -33,12 +33,8 @@ namespace ChessEngine.Entity
                         continue;
                     }
                     _board[i, j].OccupyingPiece = ParsePiece(line[j]);
-<<<<<<< HEAD
-                }
-=======
                     j++;
-                } 
->>>>>>> 8-create-a-function-to-convert-game-class-instance-to-a-fen-string
+                }
             }
         }
 
