@@ -65,13 +65,15 @@ public class Game
         return string.Join(" ", fen);
     }
 
-    public MoveResult MakeMove(Square from, Square to)
+    public MoveResult MakeMove(string fromPos, string toPos)
     {
+        Square from = Board[fromPos];
+        Square to = Board[toPos];
         if (from.OccupyingPiece == null
             || (to.OccupyingPiece != null && to.OccupyingPiece.Color == from.OccupyingPiece.Color)
             || !from.OccupyingPiece.IsMoveValid(from, to, Board))
         {
-            return MoveResult.Fail("Invalid move of missing piece");
+            return MoveResult.Fail("Invalid move or missing piece");
         }
         Board.ApplyMove(from, to);
         return MoveResult.Ok();

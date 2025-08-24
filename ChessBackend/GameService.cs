@@ -22,7 +22,7 @@ public class GameService
         if (!_games.TryGetValue(id, out var game))
             return MoveResult.Fail("Game not found");
 
-        var result = game.MakeMove(new Square(from), new Square(to));
+        var result = game.MakeMove(from, to);
         return result;
     }
 }
