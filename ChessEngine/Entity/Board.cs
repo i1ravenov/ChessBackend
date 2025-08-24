@@ -112,7 +112,7 @@ namespace ChessEngine.Entity
         public void ApplyMove(Square from, Square to)
         {
             _board[to.Rank, to.File].OccupyingPiece = from.OccupyingPiece;
-            _board[from.Rank, to.File].OccupyingPiece = null;
+            _board[from.Rank, from.File].OccupyingPiece = null;
         }
         
         public string ToFen()
