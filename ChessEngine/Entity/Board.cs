@@ -178,5 +178,16 @@ namespace ChessEngine.Entity
 
             return string.Join("/", fenRows);
         }
+        
+        public Square this[string pos]
+        {
+            get
+            {
+                Square square = new Square(pos);
+                return _board[square.File, square.Rank];
+            }
+        }
     }
+    
+    
 }
