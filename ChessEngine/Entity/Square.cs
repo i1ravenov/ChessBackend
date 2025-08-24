@@ -22,12 +22,12 @@ namespace ChessEngine.Entity
                 throw new ArgumentException("Square pos must be 2 characters long, e.g. 'c3'");
             }
             File = pos[0] - 'a';
-            Rank = pos[1] - 1;
+            Rank = pos[1] - '1';
         }
 
         public override string ToString()
         {
-            return $"{Char.ConvertFromUtf32('a' + File)}{Rank + 1}";
+            return $"{Char.ConvertFromUtf32('a' + File)}{Rank + 1}:{OccupyingPiece};";
         }
     }
 }

@@ -66,4 +66,45 @@ public abstract class Piece : IMoveValid
     }
 
     public abstract bool IsMoveValid(Square startSquare, Square endSquare, Board board);
+
+    public override string ToString()
+    {
+        return Color +  " " + PieceType;
+    }
+    
+    public override bool Equals(object obj)
+    {
+        if (ReferenceEquals(null, obj)) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != this.GetType()) return false;
+        return Equals((Piece)obj);
+    }
+
+    public bool Equals(Piece other)
+    {
+        if (ReferenceEquals(null, other)) return false;
+        if (ReferenceEquals(this, other)) return true;
+        return Color == other.Color && PieceType == other.PieceType;
+    }
+
+    public override int GetHashCode()
+    {
+        unchecked
+        {
+            int hash = 17;
+            hash = hash * 23 + Color.GetHashCode();
+            hash = hash * 23 + PieceType.GetHashCode();
+            return hash;
+        }
+    }
+
+    public static bool operator ==(Piece left, Piece right)
+    {
+        return Equals(left, right);
+    }
+
+    public static bool operator !=(Piece left, Piece right)
+    {
+        return !Equals(left, right);
+    }
 }

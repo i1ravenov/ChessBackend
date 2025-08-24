@@ -2,7 +2,7 @@
 using ChessEngine.Entity.Pieces;
 using ChessEngine.Enums;
 
-namespace ChessEngine.Tests
+namespace ChessEngine.Tests.Entity.Pieces
 {
     public class KingTest
     {

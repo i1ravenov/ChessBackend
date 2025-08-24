@@ -14,14 +14,14 @@ namespace ChessEngine.Entity
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    _board[i, j] = new Square(i, j);
+                    _board[j, i] = new Square(i, j);
                 }
             }
         }
 
         public Board(string fendata) : this()
         {
-            string[] lines = fendata.Split('/');
+            string[] lines = fendata.Split('/').Reverse().ToArray();
             for (int i = 0; i < 8; i++)
             {
                 string line = lines[i];
@@ -40,15 +40,7 @@ namespace ChessEngine.Entity
 
         private Piece ParsePiece(char p)
         {
-            Color color;
-            if (Char.IsUpper(p))
-            {
-                color = Color.White;
-            }
-            else
-            {
-                color = Color.Black;
-            }
+            Color color = Char.IsUpper(p) ? Color.White : Color.Black;
             p = Char.ToLower(p);
             switch (p)
             {
@@ -60,11 +52,6 @@ namespace ChessEngine.Entity
                 case 'q': return new Queen(color);
             }
             throw new Exception($"Unknown piece: {p}");
-        }
-
-        private Square GetSquare(int x, int y)
-        {
-            return _board[x, y];
         }
 
         public List<Square> GetSquaresOfColor(Color color) =>
@@ -124,8 +111,8 @@ namespace ChessEngine.Entity
         
         public void ApplyMove(Square from, Square to)
         {
-            _board[to.File, to.Rank].OccupyingPiece = from.OccupyingPiece;
-            _board[from.File, from.Rank].OccupyingPiece = null;
+            _board[to.Rank, to.File].OccupyingPiece = from.OccupyingPiece;
+            _board[from.Rank, from.File].OccupyingPiece = null;
         }
         
         public string ToFen()
@@ -184,10 +171,8 @@ namespace ChessEngine.Entity
             get
             {
                 Square square = new Square(pos);
-                return _board[square.File, square.Rank];
+                return _board[square.Rank, square.File];
             }
         }
     }
-    
-    
 }
