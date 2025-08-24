@@ -1,10 +1,8 @@
-﻿
-   using ChessEngine.Entity;
+﻿using ChessEngine.Entity;
 using ChessEngine.Entity.Pieces;
 using ChessEngine.Enums;
-using Xunit;
 
-namespace ChessEngine.Tests
+namespace ChessEngine.Tests.Entity.Pieces
 {
     public class RookTest
     {

@@ -30,5 +30,8 @@ namespace ChessEngine.Entity.Pieces
 
             return false;
         }
+        
+        
+        
     }
 }
