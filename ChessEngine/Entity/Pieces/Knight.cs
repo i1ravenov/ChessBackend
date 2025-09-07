@@ -29,6 +29,7 @@ namespace ChessEngine.Entity.Pieces
             return false; 
         }
 
+     public override Piece Clone() => new Knight(this.Color);
     }
  }
 

@@ -89,7 +89,7 @@ namespace ChessEngine.Entity
                                     Piece.CheckPath(_board[file, rank], targetSquare, this);
 
                             case Rook:
-                                return (dx == 0 || dy == 0) &&
+                                return (dx == 0 || dy == 0) &&  
                                     Piece.CheckPath(_board[file, rank], targetSquare, this);
 
                             case Bishop:
@@ -174,5 +174,32 @@ namespace ChessEngine.Entity
                 return _board[square.Rank, square.File];
             }
         }
+
+        public Square GetSquare(int rank, int file) => _board[rank, file];
+
+
+        public Board Clone()
+        {
+            var newBoard = new Board();
+
+            for (int rank = 0; rank < 8; rank++)
+            {
+                for (int file = 0; file < 8; file++)
+                {
+                    var originalSquare = _board[rank, file];
+                    var clonedSquare = newBoard._board[rank, file];
+
+                    if (originalSquare.OccupyingPiece != null)
+                    {
+                        var clonedPiece = originalSquare.OccupyingPiece.Clone();
+                        clonedSquare.OccupyingPiece = clonedPiece;
+                    }
+                }
+            }
+
+            return newBoard;
+        }
+
+
     }
 }

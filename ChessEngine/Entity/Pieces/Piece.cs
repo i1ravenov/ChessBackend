@@ -107,4 +107,7 @@ public abstract class Piece : IMoveValid
     {
         return !Equals(left, right);
     }
+
+
+    public abstract Piece Clone();
 }

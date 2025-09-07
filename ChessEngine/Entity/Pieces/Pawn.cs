@@ -5,6 +5,7 @@ namespace ChessEngine.Entity.Pieces
 
     public class Pawn : Piece
     {
+        public override Piece Clone() => new Pawn(this.Color);
         public Pawn(Color color) : base(color, Enums.PieceType.Pawn) { }
 
         public override bool IsMoveValid(Square startSquare, Square endSquare, Board board)

@@ -16,5 +16,7 @@ namespace ChessEngine.Entity.Pieces
             return new Rook(this.Color).IsMoveValid(startSquare, endSquare, board) ||
                 new Bishop(this.Color).IsMoveValid(startSquare, endSquare, board);
         }
+
+        public override Piece Clone() => new Queen(this.Color);
     }
 }
