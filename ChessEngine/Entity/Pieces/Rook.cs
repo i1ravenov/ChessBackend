@@ -24,6 +24,8 @@ namespace ChessEngine.Entity.Pieces
             return false;
         }
 
+        public override Piece Clone() => new Rook(this.Color);
+
     }
 
 }

@@ -8,6 +8,7 @@ namespace ChessEngine.Entity.Pieces
         {
         }
 
+    
         public override bool IsMoveValid(Square startSquare, Square endSquare, Board board)
         {
             if (!CheckBounds(endSquare))
@@ -39,5 +40,8 @@ namespace ChessEngine.Entity.Pieces
 
             return false;
         }
+
+        public override Piece Clone() => new King(this.Color);
     }
+
 }

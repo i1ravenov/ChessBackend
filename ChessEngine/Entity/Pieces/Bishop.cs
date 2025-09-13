@@ -8,6 +8,8 @@ namespace ChessEngine.Entity.Pieces
         {
         }
 
+        public override Piece Clone() => new Bishop(this.Color);
+
         public override bool IsMoveValid(Square startSquare, Square endSquare, Board board)
         {
             
@@ -32,4 +34,7 @@ namespace ChessEngine.Entity.Pieces
 
         }
     }
-}
+
+
+     
+    }
