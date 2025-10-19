@@ -1,24 +1,14 @@
 ﻿using ChessEngine.Entity;
 using ChessEngine.Entity.Pieces;
 using ChessEngine.Enums;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace ChessEngine
 {
-
-
-
     public static class MoveAnalyzer
     {
-        public static List<(Piece Piece, Square From, Square To)> GetSafeMoves(Board board, Enums.Color color)
+        public static IList<Move> GetSafeMoves(Board board, Color color)
         {
-            var result = new List<(Piece, Square, Square)>();
+            var result = new List<Move>();
 
             var allSquares = board.GetSquaresOfColor(color);
 
@@ -37,10 +27,10 @@ namespace ChessEngine
                         if (from == to) continue;
 
                      
-                        if (piece.IsMoveValid( from, to, board) &&
+                        if (piece.IsMoveValid(from, to, board) &&
                             !WouldLeaveKingInCheck(board, from, to, color))
                         {
-                            result.Add((piece, from, to));
+                            result.Add(new Move(piece, from, to));
                         }
                     }
                 }
@@ -49,7 +39,7 @@ namespace ChessEngine
             return result;
         }
 
-        private static bool WouldLeaveKingInCheck(Board board, Square from, Square to, Enums.Color color)
+        private static bool WouldLeaveKingInCheck(Board board, Square from, Square to, Color color)
         {
             var simulated = board.Clone();
             var fromSim = simulated._board[from.Rank, from.File];
@@ -62,7 +52,7 @@ namespace ChessEngine
             return simulated.IsUnderAttack(FindKing(simulated, color), color);
         }
 
-        private static Square FindKing(Board board, Enums.Color color)
+        private static Square FindKing(Board board, Color color)
         {
             for (int rank = 0; rank < 8; rank++)
                 for (int file = 0; file < 8; file++)
