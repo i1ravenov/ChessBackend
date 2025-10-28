@@ -1,33 +1,52 @@
 ﻿using ChessEngine.Entity.Pieces;
 
-namespace ChessEngine.Entity
+namespace ChessEngine.Entity;
+
+public class Square
 {
-    public class Square
-    {
-        public int File { get; set; } // Note: 0 = a, 7 = h
-        public int Rank { get; set; } // Note: 0 = 1, 7 = 8
-        public Piece? OccupyingPiece { get; set; }
+    public int File { get; } // Note: 0 = a, 7 = h
+    public int Rank { get; } // Note: 0 = 1, 7 = 8
+    public Piece? OccupyingPiece { get; set; }
        
-        public Square(int file, int rank)
-        {
-            File = file;
-            Rank = rank;
-            OccupyingPiece = null;
-        }
-
-        public Square(string pos)
-        {
-            if (pos.Length != 2)
-            {
-                throw new ArgumentException("Square pos must be 2 characters long, e.g. 'c3'");
-            }
-            File = pos[0] - 'a';
-            Rank = pos[1] - '1';
-        }
-
-        public override string ToString()
-        {
-            return $"{Char.ConvertFromUtf32('a' + File)}{Rank + 1}:{OccupyingPiece};";
-        }
+    public Square(int file, int rank)
+    {
+        File = file;
+        Rank = rank;
+        OccupyingPiece = null;
     }
+
+    public Square(string pos)
+    {
+        if (pos.Length != 2)
+        {
+            throw new ArgumentException("Square pos must be 2 characters long, e.g. 'c3'");
+        }
+        File = pos[0] - 'a';
+        Rank = pos[1] - '1';
+    }
+
+    public override string ToString()
+    {
+        return $"{Char.ConvertFromUtf32('a' + File)}{Rank + 1}:{OccupyingPiece};";
+    }
+        
+    public override bool Equals(object? obj)
+        => Equals(obj as Square);
+
+    public bool Equals(Square? other)
+    {
+        if (other is null) return false;
+        if (ReferenceEquals(this, other)) return true;
+        return File == other.File && Rank == other.Rank;
+        // Note: we do NOT compare OccupyingPiece here — equality is positional
+    }
+
+    public override int GetHashCode()
+        => HashCode.Combine(File, Rank);
+
+    public static bool operator ==(Square? left, Square? right)
+        => Equals(left, right);
+
+    public static bool operator !=(Square? left, Square? right)
+        => !Equals(left, right);
 }

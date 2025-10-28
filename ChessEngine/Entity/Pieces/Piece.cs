@@ -5,22 +5,18 @@ namespace ChessEngine.Entity.Pieces;
 
 public abstract class Piece : IMoveValid
 {
-   public Color Color {  get; set; }
-   public PieceType PieceType {  get; set; }
+   public Color Color { get; }
+   public PieceType PieceType { get; }
 
     protected Piece(Color color, PieceType pieceType)
     {
-        this.Color = color;
-        this.PieceType = pieceType;
+        Color = color;
+        PieceType = pieceType;
     }
 
-    public bool CheckBounds(Square endSquare)
+    protected static bool CheckBounds(Square endSquare)
     {
-        if (endSquare.File < 0 || endSquare.File >= 8 || endSquare.Rank < 0 || endSquare.Rank >= 8)
-        {
-            return false; 
-        }
-        return true;
+        return endSquare.File < 0 || endSquare.File >= 8 || endSquare.Rank < 0 || endSquare.Rank >= 8;
     }
 
 
@@ -107,7 +103,6 @@ public abstract class Piece : IMoveValid
     {
         return !Equals(left, right);
     }
-
-
+    
     public abstract Piece Clone();
 }

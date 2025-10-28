@@ -7,7 +7,7 @@ namespace ChessEngine;
 public class Game
 {
     [Required]
-    private Board Board {get; set;}
+    public Board Board {get; private set;}
     private IList<Move> Moves {get; set;}
     public Color NextTurn {get; private set;}
     private IList<string> FenData {get; set;}

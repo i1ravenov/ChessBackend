@@ -18,7 +18,7 @@ public class BoardTest
         //     }
         //     Console.WriteLine();
         // }
-        Assert.True(board["e2"].OccupyingPiece.Equals(new Pawn(Color.White)));
+        Assert.True(board["e2"].OccupyingPiece?.Equals(new Pawn(Color.White)));
     }
 
     [Fact]
