@@ -6,8 +6,11 @@ namespace ChessBackend.Controllers;
 [Route("api/[controller]")]
 public class GamesController : ControllerBase
 {
+
+    private string testTemp; 
     private readonly GameService _games;
 
+    
     public GamesController(GameService games) => _games = games;
 
     // POST api/games
